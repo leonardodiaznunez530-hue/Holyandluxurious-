@@ -16,7 +16,7 @@ body {
 
 /* TEXTO BRILLO */
 h1, h2, p {
-    text-shadow: 0 0 5px white, 0 0 10px white;
+    text-shadow: 0 0 5px white, 0 0 15px #aaa;
 }
 
 /* LOGO */
@@ -26,13 +26,12 @@ h1, h2, p {
     margin: 20px auto;
     animation: rotar 6s infinite linear;
 }
-
 @keyframes rotar {
     from { transform: rotateY(0deg); }
     to { transform: rotateY(360deg); }
 }
 
-/* CONTENEDOR */
+/* PRODUCTOS */
 .container {
     display: flex;
     justify-content: center;
@@ -40,7 +39,6 @@ h1, h2, p {
     flex-wrap: wrap;
 }
 
-/* TARJETAS */
 .card {
     background: #111;
     padding: 20px;
@@ -51,15 +49,12 @@ h1, h2, p {
     cursor: pointer;
     transition: 0.3s;
 }
-
 .card:hover {
     transform: scale(1.05);
     border: 1px solid white;
 }
 
-img {
-    width: 200px;
-}
+img { width: 200px; }
 
 /* VISTA PRODUCTO */
 .product-view {
@@ -73,6 +68,7 @@ button {
     color: black;
     padding: 10px;
     border: none;
+    margin: 5px;
     cursor: pointer;
 }
 
@@ -81,7 +77,7 @@ button {
     position: fixed;
     right: 0;
     top: 0;
-    width: 250px;
+    width: 260px;
     height: 100%;
     background: black;
     border-left: 2px solid white;
@@ -123,23 +119,20 @@ button {
 
 </div>
 
-<!-- PRODUCTO BAPE -->
+<!-- PRODUCTO -->
 <div id="bape" class="product-view">
     <h1>BAPE</h1>
     <img src="bape.jpg">
-    <p>PRODUCTO PREMIUM 💎</p>
+    <p>PRODUCTO PREMIUM</p>
     <button onclick="addToCart('BAPE',800)">AGREGAR</button>
-    <br><br>
     <button onclick="volver()">VOLVER</button>
 </div>
 
-<!-- PRODUCTO HELLSTAR -->
 <div id="hellstar" class="product-view">
     <h1>HELLSTAR</h1>
     <img src="hellstar.jpg">
-    <p>STREETWEAR 🔥</p>
+    <p>STREETWEAR</p>
     <button onclick="addToCart('HELLSTAR',500)">AGREGAR</button>
-    <br><br>
     <button onclick="volver()">VOLVER</button>
 </div>
 
@@ -148,7 +141,9 @@ button {
 <h3>CARRITO 🛒</h3>
 <ul id="cart-items"></ul>
 <p>TOTAL: $<span id="total">0</span></p>
-<button onclick="pagar()">PAGAR</button>
+
+<button onclick="enviarWhatsApp()">COMPRAR POR WHATSAPP 📲</button>
+<button onclick="pagar()">PAGAR 💳</button>
 </div>
 
 <!-- WHATSAPP -->
@@ -158,6 +153,7 @@ button {
 
 <script>
 let total = 0;
+let carrito = [];
 
 function verProducto(id) {
     document.getElementById("shop").style.display = "none";
@@ -173,6 +169,8 @@ function volver() {
 }
 
 function addToCart(nombre, precio) {
+    carrito.push({nombre, precio});
+
     let lista = document.getElementById("cart-items");
     let item = document.createElement("li");
     item.textContent = nombre + " - $" + precio;
@@ -182,8 +180,20 @@ function addToCart(nombre, precio) {
     document.getElementById("total").textContent = total;
 }
 
+function enviarWhatsApp() {
+    let mensaje = "PEDIDO:%0A";
+    
+    carrito.forEach(p => {
+        mensaje += "- " + p.nombre + " $" + p.precio + "%0A";
+    });
+
+    mensaje += "TOTAL: $" + total;
+
+    window.open("https://wa.me/521XXXXXXXXXX?text=" + mensaje);
+}
+
 function pagar() {
-    alert("PAGO SIMULADO 💳");
+    alert("PAGO SIMULADO 💳 (SIGUIENTE PASO: PAYPAL O STRIPE)");
 }
 </script>
 
