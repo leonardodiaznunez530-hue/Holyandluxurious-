@@ -13,10 +13,17 @@ body {
     color: white;
 }
 
-/* HEADER */
-header {
-    text-align: center;
-    padding: 30px;
+/* LOGO 3D */
+.logo3d {
+    width: 120px;
+    display: block;
+    margin: auto;
+    animation: rotar 6s infinite linear;
+}
+
+@keyframes rotar {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
 }
 
 /* PRODUCTOS */
@@ -33,15 +40,8 @@ header {
     width: 220px;
     border-radius: 10px;
     text-align: center;
-    transition: 0.3s;
 }
 
-.card:hover {
-    transform: scale(1.05);
-    border: 1px solid gold;
-}
-
-/* BOTON */
 button {
     background: gold;
     border: none;
@@ -55,34 +55,27 @@ button {
     right: 0;
     top: 0;
     background: black;
-    width: 250px;
+    width: 260px;
     height: 100%;
     padding: 10px;
-    border-left: 1px solid gold;
+    border-left: 2px solid gold;
 }
 
-/* WHATSAPP */
+/* WHATSAPP REAL */
 .whatsapp {
     position: fixed;
     bottom: 20px;
     left: 20px;
+}
+
+.whatsapp img {
+    width: 60px;
+}
+
+/* BOTON PAGO */
+.pay {
+    margin-top: 10px;
     background: green;
-    color: white;
-    padding: 15px;
-    border-radius: 50%;
-    text-decoration: none;
-}
-
-/* 3D ROTACION */
-.logo3d {
-    width: 150px;
-    margin: auto;
-    animation: rotar 5s infinite linear;
-}
-
-@keyframes rotar {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
 }
 </style>
 
@@ -90,23 +83,24 @@ button {
 
 <body>
 
-<header>
-    <h1 class="logo3d">HOLY & LUX</h1>
-</header>
+<!-- LOGO -->
+<img class="logo3d" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
+
+<h1 style="text-align:center;">HOLY & LUXURIOUS</h1>
 
 <div class="container">
 
-    <div class="card">
-        <h2>HELLSTAR</h2>
-        <p>$500</p>
-        <button onclick="addToCart('HELLSTAR',500)">Agregar</button>
-    </div>
+<div class="card">
+    <h2>HELLSTAR</h2>
+    <p>$500</p>
+    <button onclick="addToCart('HELLSTAR',500)">Agregar</button>
+</div>
 
-    <div class="card">
-        <h2>BAPE</h2>
-        <p>$800</p>
-        <button onclick="addToCart('BAPE',800)">Agregar</button>
-    </div>
+<div class="card">
+    <h2>BAPE</h2>
+    <p>$800</p>
+    <button onclick="addToCart('BAPE',800)">Agregar</button>
+</div>
 
 </div>
 
@@ -115,11 +109,14 @@ button {
     <h3>Carrito 🛒</h3>
     <ul id="cart-items"></ul>
     <p>Total: $<span id="total">0</span></p>
+
+    <!-- PAGO -->
+    <button class="pay" onclick="pagar()">Pagar 💳</button>
 </div>
 
-<!-- WHATSAPP -->
+<!-- WHATSAPP ICONO REAL -->
 <a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
-📲
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
 
 <script>
@@ -133,6 +130,10 @@ function addToCart(nombre, precio) {
 
     total += precio;
     document.getElementById("total").textContent = total;
+}
+
+function pagar() {
+    alert("Pago realizado (simulación). Próximo paso: integrar PayPal o Stripe 💳");
 }
 </script>
 
