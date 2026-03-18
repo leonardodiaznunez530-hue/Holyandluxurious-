@@ -1,113 +1,140 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HolyAndLuxurious</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holy & Luxurious</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(black, #111);
-            color: white;
-        }
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(black, #111);
+    color: white;
+}
 
-        header {
-            text-align: center;
-            padding: 40px 20px;
-            background: black;
-            border-bottom: 1px solid #222;
-        }
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px;
+}
 
-        header h1 {
-            font-size: 40px;
-            letter-spacing: 3px;
-        }
+/* PRODUCTOS */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        nav {
-            text-align: center;
-            padding: 15px;
-            background: #111;
-        }
+.card {
+    background: #111;
+    padding: 20px;
+    width: 220px;
+    border-radius: 10px;
+    text-align: center;
+    transition: 0.3s;
+}
 
-        nav a {
-            color: white;
-            margin: 15px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
+.card:hover {
+    transform: scale(1.05);
+    border: 1px solid gold;
+}
 
-        nav a:hover {
-            color: gold;
-        }
+/* BOTON */
+button {
+    background: gold;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
 
-        .container {
-            padding: 40px;
-            text-align: center;
-        }
+/* CARRITO */
+#cart {
+    position: fixed;
+    right: 0;
+    top: 0;
+    background: black;
+    width: 250px;
+    height: 100%;
+    padding: 10px;
+    border-left: 1px solid gold;
+}
 
-        .card {
-            background: #111;
-            margin: 20px auto;
-            padding: 20px;
-            width: 250px;
-            border-radius: 10px;
-            border: 1px solid #222;
-            transition: 0.3s;
-        }
+/* WHATSAPP */
+.whatsapp {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: green;
+    color: white;
+    padding: 15px;
+    border-radius: 50%;
+    text-decoration: none;
+}
 
-        .card:hover {
-            transform: scale(1.05);
-            border: 1px solid gold;
-        }
+/* 3D ROTACION */
+.logo3d {
+    width: 150px;
+    margin: auto;
+    animation: rotar 5s infinite linear;
+}
 
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: black;
-            border-top: 1px solid #222;
-            margin-top: 40px;
-        }
-    </style>
+@keyframes rotar {
+    from { transform: rotateY(0deg); }
+    to { transform: rotateY(360deg); }
+}
+</style>
+
 </head>
 
 <body>
 
 <header>
-    <h1>HOLY & LUXURIOUS</h1>
-    <p>MODA • EXCLUSIVIDAD • ESTILO</p>
+    <h1 class="logo3d">HOLY & LUX</h1>
 </header>
-
-<nav>
-    <a href="#">INICIO</a>
-    <a href="#">MODELOS</a>
-    <a href="#">CONTACTO</a>
-</nav>
 
 <div class="container">
 
     <div class="card">
         <h2>HELLSTAR</h2>
-        <p>Streetwear exclusivo 🔥</p>
-    </div>
-
-    <div class="card">
-        <h2>CAPS GFIVE</h2>
-        <p>Dandy Hats / Barbas Hats 🧢</p>
+        <p>$500</p>
+        <button onclick="addToCart('HELLSTAR',500)">Agregar</button>
     </div>
 
     <div class="card">
         <h2>BAPE</h2>
-        <p>Moda premium 💎</p>
+        <p>$800</p>
+        <button onclick="addToCart('BAPE',800)">Agregar</button>
     </div>
 
 </div>
 
-<footer>
-    <p>© 2026 HolyAndLuxurious</p>
-</footer>
+<!-- CARRITO -->
+<div id="cart">
+    <h3>Carrito 🛒</h3>
+    <ul id="cart-items"></ul>
+    <p>Total: $<span id="total">0</span></p>
+</div>
+
+<!-- WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
+📲
+</a>
+
+<script>
+let total = 0;
+
+function addToCart(nombre, precio) {
+    let lista = document.getElementById("cart-items");
+    let item = document.createElement("li");
+    item.textContent = nombre + " - $" + precio;
+    lista.appendChild(item);
+
+    total += precio;
+    document.getElementById("total").textContent = total;
+}
+</script>
 
 </body>
 </html>
