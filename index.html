@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Holy & Luxurious</title>
+<title>HOLY & LUXURIOUS</title>
 
 <style>
 body {
@@ -11,19 +11,19 @@ body {
     font-family: Arial, sans-serif;
     background: black;
     color: white;
-    text-transform: uppercase; /* TODO en mayúsculas */
+    text-transform: uppercase;
 }
 
-/* EFECTO BRILLO */
+/* TEXTO BRILLANTE */
 h1, h2, p, a {
     text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px #aaa;
 }
 
-/* LOGO 3D */
+/* LOGO MURCIELAGO */
 .logo3d {
     width: 120px;
     display: block;
-    margin: auto;
+    margin: 20px auto;
     animation: rotar 6s infinite linear;
 }
 
@@ -32,7 +32,7 @@ h1, h2, p, a {
     to { transform: rotateY(360deg); }
 }
 
-/* PRODUCTOS */
+/* CONTENEDOR */
 .container {
     display: flex;
     justify-content: center;
@@ -40,6 +40,7 @@ h1, h2, p, a {
     flex-wrap: wrap;
 }
 
+/* TARJETAS */
 .card {
     background: #111;
     padding: 20px;
@@ -92,6 +93,7 @@ button:hover {
     width: 60px;
 }
 </style>
+
 </head>
 
 <body>
@@ -106,28 +108,27 @@ button:hover {
 <div class="card">
     <h2>HELLSTAR</h2>
     <p>$500</p>
-    <button onclick="addToCart('HELLSTAR',500)">Agregar</button>
+    <button onclick="addToCart('HELLSTAR',500)">AGREGAR</button>
 </div>
 
 <div class="card">
     <h2>BAPE</h2>
     <p>$800</p>
-    <button onclick="addToCart('BAPE',800)">Agregar</button>
+    <button onclick="addToCart('BAPE',800)">AGREGAR</button>
 </div>
 
 </div>
 
 <!-- CARRITO -->
 <div id="cart">
-    <h3>Carrito 🛒</h3>
+    <h3>CARRITO 🛒</h3>
     <ul id="cart-items"></ul>
-    <p>Total: $<span id="total">0</span></p>
+    <p>TOTAL: $<span id="total">0</span></p>
 
-    <!-- PAGO -->
-    <button class="pay" onclick="pagar()">Pagar 💳</button>
+    <button onclick="pagar()">PAGAR 💳</button>
 </div>
 
-<!-- WHATSAPP ICONO REAL -->
+<!-- WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
     <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
@@ -146,7 +147,7 @@ function addToCart(nombre, precio) {
 }
 
 function pagar() {
-    alert("Pago realizado (simulación). Próximo paso: integrar PayPal o Stripe 💳");
+    alert("PAGO SIMULADO 💳 (SIGUIENTE PASO: INTEGRAR PAYPAL O STRIPE)");
 }
 </script>
 
