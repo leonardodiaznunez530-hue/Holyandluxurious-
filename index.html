@@ -3,78 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <meta name="google-site-verification" content="Apib7-x98H0j5cPqHWwSMm6dNU4GmODRoqxLiDzdx9I" />
-    
     <title>HolyAndLuxurious</title>
-    
+
     <style>
         body {
-    background-color: black;
-    color: white;
-}
-</style>
-        body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background: #333;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(black, #111);
             color: white;
-            padding: 15px;
-            text-align: center;
         }
+
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            background: black;
+            border-bottom: 1px solid #222;
+        }
+
+        header h1 {
+            font-size: 40px;
+            letter-spacing: 3px;
+        }
+
         nav {
-            background: #555;
-            padding: 10px;
             text-align: center;
+            padding: 15px;
+            background: #111;
         }
+
         nav a {
             color: white;
-            margin: 10px;
+            margin: 15px;
             text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
         }
+
         nav a:hover {
-            text-decoration: underline;
+            color: gold;
         }
+
         .container {
-            padding: 20px;
-            margin-bottom: 60px; /* Añadí esto para que el footer no tape el texto */
-        }
-        footer {
-            background: #333;
-            color: white;
+            padding: 40px;
             text-align: center;
-            padding: 10px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+        }
+
+        .card {
+            background: #111;
+            margin: 20px auto;
+            padding: 20px;
+            width: 250px;
+            border-radius: 10px;
+            border: 1px solid #222;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            border: 1px solid gold;
+        }
+
+        footer {
+            text-align: center;
+            padding: 15px;
+            background: black;
+            border-top: 1px solid #222;
+            margin-top: 40px;
         }
     </style>
 </head>
+
 <body>
 
 <header>
-    <h1>SITIO WEB OFICIAL</h1>
-    <p>MODA Y LUJO</p>
+    <h1>HOLY & LUXURIOUS</h1>
+    <p>MODA • EXCLUSIVIDAD • ESTILO</p>
 </header>
 
 <nav>
-    <a href="#">CONTACTO</a>
+    <a href="#">INICIO</a>
     <a href="#">MODELOS</a>
-    <a href="#">NUMERO</a>
+    <a href="#">CONTACTO</a>
 </nav>
 
 <div class="container">
-    <h2>HELLSTAR</h2>
-    <p>MODELOS.</p>
 
-    <h2>CAPS GFIVE</h2>
-    <p>Dandy Hats / Barbas Hats</p>.</p>
+    <div class="card">
+        <h2>HELLSTAR</h2>
+        <p>Streetwear exclusivo 🔥</p>
+    </div>
 
-    <h2>BAPE</h2>
-    <p>Email: HolyAndLuxuriuos</p>
+    <div class="card">
+        <h2>CAPS GFIVE</h2>
+        <p>Dandy Hats / Barbas Hats 🧢</p>
+    </div>
+
+    <div class="card">
+        <h2>BAPE</h2>
+        <p>Moda premium 💎</p>
+    </div>
+
 </div>
 
 <footer>
