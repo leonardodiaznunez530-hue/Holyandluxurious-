@@ -6,206 +6,115 @@
 <title>HOLYANDLUXURIOUS</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
-
 body {
     margin: 0;
     background: black;
     color: white;
-    font-family: 'Playfair Display', serif;
+    font-family: Arial, sans-serif;
 }
 
-/* INTRO */
-.intro {
-    position: fixed;
-    width: 100%;
-    height: 100%;
-    background: black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeOut 2s ease 2s forwards;
-}
-
-.intro h1 {
-    font-size: 50px;
-    letter-spacing: 8px;
-    text-shadow: 0 0 20px white;
-}
-
-@keyframes fadeOut {
-    to { opacity: 0; visibility: hidden; }
-}
-
-/* CONTENIDO */
-.main {
-    opacity: 0;
-    animation: aparecer 2s ease 3s forwards;
-}
-
-@keyframes aparecer {
-    to { opacity: 1; }
-}
-
-/* MURCIELAGO */
-.bat {
-    width: 120px;
-    margin: 40px auto;
-    display: block;
-    filter: brightness(0) invert(1);
-    animation: rotar 8s linear infinite;
-}
-
-@keyframes rotar {
-    from { transform: rotateY(0deg); }
-    to { transform: rotateY(360deg); }
-}
-
-/* TITULO */
-.titulo {
-    text-align: center;
-    font-size: 36px;
-    letter-spacing: 6px;
-    text-shadow: 0 0 15px white;
-}
-
-/* MARCAS GRID */
+/* GRID MARCAS */
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 40px;
-    padding: 80px;
+    padding: 60px;
 }
 
-/* TARJETAS */
 .card {
     text-align: center;
-    font-size: 26px;
     padding: 40px;
-    border: 1px solid #111;
+    border: 1px solid #222;
     cursor: pointer;
-    transition: 0.4s;
-    position: relative;
+    transition: 0.3s;
 }
 
-/* EFECTO MARCO BRILLANTE */
 .card:hover {
     border: 1px solid white;
-    box-shadow:
-        0 0 10px white,
-        0 0 20px white,
-        0 0 40px white;
-    transform: scale(1.05);
-    text-shadow: 0 0 10px white;
+    box-shadow: 0 0 20px white;
 }
 
-/* PRODUCTO */
-.product-view {
+/* PRODUCTOS */
+.products {
     display: none;
+    padding: 40px;
+}
+
+.product {
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 20px;
     text-align: center;
-    animation: fadeIn 1s ease;
 }
 
-@keyframes fadeIn {
-    from {opacity:0;}
-    to {opacity:1;}
-}
-
-img {
-    width: 260px;
-    margin-top: 20px;
+.product img {
+    width: 200px;
 }
 
 button {
-    margin-top: 30px;
+    margin-top: 20px;
     padding: 10px 20px;
-    background: white;
-    color: black;
-    border: none;
     cursor: pointer;
-}
-
-button:hover {
-    background: black;
-    color: white;
-    border: 1px solid white;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div class="intro">
-    <h1>HOLYANDLUXURIOUS</h1>
-</div>
-
-<div class="main">
-
-<img class="bat" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
-
-<h1 class="titulo">HOLYANDLUXURIOUS</h1>
-
 <!-- MARCAS -->
-<div id="shop" class="container">
-
-<div class="card" onclick="verProducto('bape')">BAPE</div>
-<div class="card" onclick="verProducto('hellstar')">HELLSTAR</div>
-<div class="card" onclick="verProducto('essentials')">ESSENTIALS</div>
-<div class="card" onclick="verProducto('alo')">ALO</div>
-<div class="card" onclick="verProducto('sp5der')">SP5DER</div>
-
+<div id="marcas" class="container">
+    <div class="card" onclick="mostrar('bape')">BAPE</div>
+    <div class="card" onclick="mostrar('hellstar')">HELLSTAR</div>
 </div>
 
-<!-- PRODUCTOS -->
-<div id="bape" class="product-view">
+<!-- BAPE -->
+<div id="bape" class="products">
     <h1>BAPE</h1>
-    <img src="bape.jpg">
-    <br>
+
+    <div class="product">
+        <img src="bape1.jpg">
+        <h3>Camiseta BAPE Camo</h3>
+        <p>Tallas: S, M, L, XL</p>
+    </div>
+
+    <div class="product">
+        <img src="bape2.jpg">
+        <h3>Sudadera BAPE Shark</h3>
+        <p>Tallas: M, L, XL</p>
+    </div>
+
     <button onclick="volver()">VOLVER</button>
 </div>
 
-<div id="hellstar" class="product-view">
+<!-- HELLSTAR -->
+<div id="hellstar" class="products">
     <h1>HELLSTAR</h1>
-    <img src="hellstar.jpg">
-    <br>
-    <button onclick="volver()">VOLVER</button>
-</div>
 
-<div id="essentials" class="product-view">
-    <h1>ESSENTIALS</h1>
-    <img src="essentials.jpg">
-    <br>
-    <button onclick="volver()">VOLVER</button>
-</div>
+    <div class="product">
+        <img src="hell1.jpg">
+        <h3>Playera Hellstar Flames</h3>
+        <p>Tallas: S, M, L</p>
+    </div>
 
-<div id="alo" class="product-view">
-    <h1>ALO</h1>
-    <img src="alo.jpg">
-    <br>
-    <button onclick="volver()">VOLVER</button>
-</div>
+    <div class="product">
+        <img src="hell2.jpg">
+        <h3>Hoodie Hellstar Black</h3>
+        <p>Tallas: M, L, XL</p>
+    </div>
 
-<div id="sp5der" class="product-view">
-    <h1>SP5DER</h1>
-    <img src="sp5der.jpg">
-    <br>
     <button onclick="volver()">VOLVER</button>
-</div>
-
 </div>
 
 <script>
-function verProducto(id) {
-    document.getElementById("shop").style.display = "none";
-    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
-    document.getElementById(id).style.display = "block";
+function mostrar(marca) {
+    document.getElementById("marcas").style.display = "none";
+    document.querySelectorAll(".products").forEach(el => el.style.display = "none");
+    document.getElementById(marca).style.display = "block";
 }
 
 function volver() {
-    document.getElementById("shop").style.display = "grid";
-    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
+    document.getElementById("marcas").style.display = "grid";
+    document.querySelectorAll(".products").forEach(el => el.style.display = "none");
 }
 </script>
 
