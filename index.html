@@ -14,24 +14,24 @@ body {
     text-transform: uppercase;
 }
 
-/* TITULO PRO */
+/* TITULO */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
 .titulo {
     font-family: 'Playfair Display', serif;
     text-align: center;
     font-size: 40px;
-    letter-spacing: 4px;
+    letter-spacing: 5px;
     color: white;
-    text-shadow: 0 0 5px white, 0 0 20px white, 0 0 40px #aaa;
+    text-shadow: 0 0 10px white, 0 0 30px white;
 }
 
 /* MURCIELAGO */
 .bat {
     width: 120px;
     display: block;
-    margin: 20px auto;
-    filter: brightness(0) invert(1); /* negro con brillo blanco */
+    margin: 30px auto;
+    filter: brightness(0) invert(1);
     animation: rotar 6s infinite linear;
 }
 
@@ -44,71 +44,40 @@ body {
 .container {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+    gap: 60px;
+    margin-top: 80px;
 }
 
 .card {
-    background: #111;
-    padding: 30px;
-    width: 220px;
-    text-align: center;
-    border-radius: 10px;
-    border: 1px solid #222;
+    font-size: 28px;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .card:hover {
-    transform: scale(1.05);
-    border: 1px solid white;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px white;
 }
 
-/* VISTA PRODUCTO */
+/* PRODUCTOS */
 .product-view {
     display: none;
     text-align: center;
 }
 
-/* BOTONES */
 button {
     background: white;
     color: black;
     padding: 10px;
     border: none;
-    margin: 5px;
+    margin-top: 20px;
     cursor: pointer;
-}
-
-/* CARRITO */
-#cart {
-    display: none; /* 🔥 OCULTO AL INICIO */
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 260px;
-    height: 100%;
-    background: black;
-    border-left: 2px solid white;
-    padding: 10px;
-}
-
-/* WHATSAPP */
-.whatsapp {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-}
-.whatsapp img {
-    width: 60px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- MURCIELAGO -->
 <img class="bat" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
 
 <h1 class="titulo">HOLYANDLUXURIOUS</h1>
@@ -117,11 +86,11 @@ button {
 <div id="shop" class="container">
 
 <div class="card" onclick="verProducto('bape')">
-    <h2>BAPE</h2>
+    BAPE
 </div>
 
 <div class="card" onclick="verProducto('hellstar')">
-    <h2>HELLSTAR</h2>
+    HELLSTAR
 </div>
 
 </div>
@@ -129,76 +98,29 @@ button {
 <!-- PRODUCTOS -->
 <div id="bape" class="product-view">
     <h1>BAPE</h1>
-    <img src="bape.jpg" width="200">
-    <p>$800</p>
-    <button onclick="addToCart('BAPE',800)">AGREGAR</button>
+    <img src="bape.jpg" width="250">
     <button onclick="volver()">VOLVER</button>
 </div>
 
 <div id="hellstar" class="product-view">
     <h1>HELLSTAR</h1>
-    <img src="hellstar.jpg" width="200">
-    <p>$500</p>
-    <button onclick="addToCart('HELLSTAR',500)">AGREGAR</button>
+    <img src="hellstar.jpg" width="250">
     <button onclick="volver()">VOLVER</button>
 </div>
 
-<!-- CARRITO -->
-<div id="cart">
-<h3>CARRITO 🛒</h3>
-<ul id="cart-items"></ul>
-<p>TOTAL: $<span id="total">0</span></p>
-<button onclick="enviarWhatsApp()">COMPRAR 📲</button>
-</div>
-
-<!-- WHATSAPP -->
-<a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
-<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
-</a>
-
 <script>
-let total = 0;
-let carrito = [];
-
 function verProducto(id) {
     document.getElementById("shop").style.display = "none";
     document.getElementById("bape").style.display = "none";
     document.getElementById("hellstar").style.display = "none";
 
     document.getElementById(id).style.display = "block";
-    document.getElementById("cart").style.display = "block"; // 🔥 aparece carrito
 }
 
 function volver() {
     document.getElementById("shop").style.display = "flex";
     document.getElementById("bape").style.display = "none";
     document.getElementById("hellstar").style.display = "none";
-
-    document.getElementById("cart").style.display = "none"; // 🔥 se oculta carrito
-}
-
-function addToCart(nombre, precio) {
-    carrito.push({nombre, precio});
-
-    let lista = document.getElementById("cart-items");
-    let item = document.createElement("li");
-    item.textContent = nombre + " - $" + precio;
-    lista.appendChild(item);
-
-    total += precio;
-    document.getElementById("total").textContent = total;
-}
-
-function enviarWhatsApp() {
-    let mensaje = "PEDIDO:%0A";
-
-    carrito.forEach(p => {
-        mensaje += "- " + p.nombre + " $" + p.precio + "%0A";
-    });
-
-    mensaje += "TOTAL: $" + total;
-
-    window.open("https://wa.me/521XXXXXXXXXX?text=" + mensaje);
 }
 </script>
 
