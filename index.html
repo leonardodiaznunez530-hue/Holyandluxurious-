@@ -13,7 +13,6 @@ body {
     background: black;
     color: white;
     font-family: 'Playfair Display', serif;
-    overflow-x: hidden;
 }
 
 /* INTRO */
@@ -33,12 +32,6 @@ body {
     font-size: 50px;
     letter-spacing: 8px;
     text-shadow: 0 0 20px white;
-    animation: glow 2s infinite alternate;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px white; }
-    to { text-shadow: 0 0 40px white; }
 }
 
 @keyframes fadeOut {
@@ -77,43 +70,37 @@ body {
     text-shadow: 0 0 15px white;
 }
 
-/* MARCAS */
+/* MARCAS GRID */
 .container {
-    display: flex;
-    justify-content: center;
-    gap: 80px;
-    margin-top: 120px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 40px;
+    padding: 80px;
 }
 
+/* TARJETAS */
 .card {
-    font-size: 30px;
+    text-align: center;
+    font-size: 26px;
+    padding: 40px;
+    border: 1px solid #111;
     cursor: pointer;
+    transition: 0.4s;
     position: relative;
-    transition: 0.4s;
 }
 
-/* LINEA ANIMADA */
-.card::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background: white;
-    bottom: -10px;
-    left: 0;
-    transition: 0.4s;
-}
-
-.card:hover::after {
-    width: 100%;
-}
-
+/* EFECTO MARCO BRILLANTE */
 .card:hover {
-    transform: scale(1.1);
-    text-shadow: 0 0 20px white;
+    border: 1px solid white;
+    box-shadow:
+        0 0 10px white,
+        0 0 20px white,
+        0 0 40px white;
+    transform: scale(1.05);
+    text-shadow: 0 0 10px white;
 }
 
-/* PRODUCTOS */
+/* PRODUCTO */
 .product-view {
     display: none;
     text-align: center;
@@ -121,8 +108,8 @@ body {
 }
 
 @keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
+    from {opacity:0;}
+    to {opacity:1;}
 }
 
 img {
@@ -137,7 +124,6 @@ button {
     color: black;
     border: none;
     cursor: pointer;
-    transition: 0.3s;
 }
 
 button:hover {
@@ -164,13 +150,11 @@ button:hover {
 <!-- MARCAS -->
 <div id="shop" class="container">
 
-<div class="card" onclick="verProducto('bape')">
-    BAPE
-</div>
-
-<div class="card" onclick="verProducto('hellstar')">
-    HELLSTAR
-</div>
+<div class="card" onclick="verProducto('bape')">BAPE</div>
+<div class="card" onclick="verProducto('hellstar')">HELLSTAR</div>
+<div class="card" onclick="verProducto('essentials')">ESSENTIALS</div>
+<div class="card" onclick="verProducto('alo')">ALO</div>
+<div class="card" onclick="verProducto('sp5der')">SP5DER</div>
 
 </div>
 
@@ -189,20 +173,39 @@ button:hover {
     <button onclick="volver()">VOLVER</button>
 </div>
 
+<div id="essentials" class="product-view">
+    <h1>ESSENTIALS</h1>
+    <img src="essentials.jpg">
+    <br>
+    <button onclick="volver()">VOLVER</button>
+</div>
+
+<div id="alo" class="product-view">
+    <h1>ALO</h1>
+    <img src="alo.jpg">
+    <br>
+    <button onclick="volver()">VOLVER</button>
+</div>
+
+<div id="sp5der" class="product-view">
+    <h1>SP5DER</h1>
+    <img src="sp5der.jpg">
+    <br>
+    <button onclick="volver()">VOLVER</button>
+</div>
+
 </div>
 
 <script>
 function verProducto(id) {
     document.getElementById("shop").style.display = "none";
-    document.getElementById("bape").style.display = "none";
-    document.getElementById("hellstar").style.display = "none";
+    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
     document.getElementById(id).style.display = "block";
 }
 
 function volver() {
-    document.getElementById("shop").style.display = "flex";
-    document.getElementById("bape").style.display = "none";
-    document.getElementById("hellstar").style.display = "none";
+    document.getElementById("shop").style.display = "grid";
+    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
 }
 </script>
 
