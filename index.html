@@ -8,18 +8,17 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     background: black;
     color: white;
     text-transform: uppercase;
 }
 
-/* TEXTO BRILLANTE */
-h1, h2, p, a {
-    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px #aaa;
+h1, h2, p {
+    text-shadow: 0 0 5px white, 0 0 10px white;
 }
 
-/* LOGO MURCIELAGO */
+/* LOGO */
 .logo3d {
     width: 120px;
     display: block;
@@ -32,7 +31,7 @@ h1, h2, p, a {
     to { transform: rotateY(360deg); }
 }
 
-/* CONTENEDOR */
+/* PRODUCTOS */
 .container {
     display: flex;
     justify-content: center;
@@ -40,13 +39,12 @@ h1, h2, p, a {
     flex-wrap: wrap;
 }
 
-/* TARJETAS */
 .card {
     background: #111;
     padding: 20px;
     width: 220px;
-    border-radius: 10px;
     text-align: center;
+    border-radius: 10px;
     border: 1px solid #222;
     transition: 0.3s;
 }
@@ -56,18 +54,16 @@ h1, h2, p, a {
     border: 1px solid white;
 }
 
-/* BOTONES */
+img {
+    width: 200px;
+}
+
+/* BOTON */
 button {
     background: white;
     color: black;
-    border: none;
     padding: 10px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: gray;
+    border: none;
 }
 
 /* CARRITO */
@@ -75,11 +71,11 @@ button:hover {
     position: fixed;
     right: 0;
     top: 0;
-    background: black;
-    width: 260px;
+    width: 250px;
     height: 100%;
-    padding: 10px;
+    background: black;
     border-left: 2px solid white;
+    padding: 10px;
 }
 
 /* WHATSAPP */
@@ -88,49 +84,49 @@ button:hover {
     bottom: 20px;
     left: 20px;
 }
-
 .whatsapp img {
     width: 60px;
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- LOGO -->
 <img class="logo3d" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
 
 <h1 style="text-align:center;">HOLY & LUXURIOUS</h1>
 
 <div class="container">
 
+<a href="bape.html" style="text-decoration:none; color:white;">
 <div class="card">
-    <h2>HELLSTAR</h2>
-    <p>$500</p>
-    <button onclick="addToCart('HELLSTAR',500)">AGREGAR</button>
-</div>
-
-<div class="card">
+    <img src="bape.jpg">
     <h2>BAPE</h2>
     <p>$800</p>
-    <button onclick="addToCart('BAPE',800)">AGREGAR</button>
+    <button onclick="event.preventDefault(); addToCart('BAPE',800)">AGREGAR</button>
 </div>
+</a>
+
+<a href="hellstar.html" style="text-decoration:none; color:white;">
+<div class="card">
+    <img src="hellstar.jpg">
+    <h2>HELLSTAR</h2>
+    <p>$500</p>
+    <button onclick="event.preventDefault(); addToCart('HELLSTAR',500)">AGREGAR</button>
+</div>
+</a>
 
 </div>
 
-<!-- CARRITO -->
 <div id="cart">
-    <h3>CARRITO 🛒</h3>
-    <ul id="cart-items"></ul>
-    <p>TOTAL: $<span id="total">0</span></p>
-
-    <button onclick="pagar()">PAGAR 💳</button>
+<h3>CARRITO</h3>
+<ul id="cart-items"></ul>
+<p>TOTAL: $<span id="total">0</span></p>
+<button onclick="pagar()">PAGAR</button>
 </div>
 
-<!-- WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
-    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
+<img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
 
 <script>
@@ -147,7 +143,7 @@ function addToCart(nombre, precio) {
 }
 
 function pagar() {
-    alert("PAGO SIMULADO 💳 (SIGUIENTE PASO: INTEGRAR PAYPAL O STRIPE)");
+    alert("PAGO SIMULADO 💳");
 }
 </script>
 
