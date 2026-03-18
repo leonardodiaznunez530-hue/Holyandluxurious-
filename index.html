@@ -8,9 +8,15 @@
 <style>
 body {
     margin: 0;
-    font-family: Arial;
-    background: linear-gradient(black, #111);
+    font-family: Arial, sans-serif;
+    background: black;
     color: white;
+    text-transform: uppercase; /* TODO en mayúsculas */
+}
+
+/* EFECTO BRILLO */
+h1, h2, p, a {
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px #aaa;
 }
 
 /* LOGO 3D */
@@ -40,13 +46,27 @@ body {
     width: 220px;
     border-radius: 10px;
     text-align: center;
+    border: 1px solid #222;
+    transition: 0.3s;
 }
 
+.card:hover {
+    transform: scale(1.05);
+    border: 1px solid white;
+}
+
+/* BOTONES */
 button {
-    background: gold;
+    background: white;
+    color: black;
     border: none;
     padding: 10px;
     cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: gray;
 }
 
 /* CARRITO */
@@ -58,10 +78,10 @@ button {
     width: 260px;
     height: 100%;
     padding: 10px;
-    border-left: 2px solid gold;
+    border-left: 2px solid white;
 }
 
-/* WHATSAPP REAL */
+/* WHATSAPP */
 .whatsapp {
     position: fixed;
     bottom: 20px;
@@ -71,14 +91,7 @@ button {
 .whatsapp img {
     width: 60px;
 }
-
-/* BOTON PAGO */
-.pay {
-    margin-top: 10px;
-    background: green;
-}
 </style>
-
 </head>
 
 <body>
