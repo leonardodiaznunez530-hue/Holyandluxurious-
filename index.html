@@ -14,8 +14,9 @@ body {
     text-transform: uppercase;
 }
 
+/* TEXTO BRILLO */
 h1, h2, p {
-    text-shadow: 0 0 5px white, 0 0 10px white;
+    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px #aaa;
 }
 
 /* LOGO */
@@ -31,7 +32,7 @@ h1, h2, p {
     to { transform: rotateY(360deg); }
 }
 
-/* PRODUCTOS */
+/* CONTENEDOR */
 .container {
     display: flex;
     justify-content: center;
@@ -39,6 +40,7 @@ h1, h2, p {
     flex-wrap: wrap;
 }
 
+/* TARJETAS */
 .card {
     background: #111;
     padding: 20px;
@@ -58,12 +60,18 @@ img {
     width: 200px;
 }
 
-/* BOTON */
+/* BOTONES */
 button {
     background: white;
     color: black;
-    padding: 10px;
     border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: gray;
 }
 
 /* CARRITO */
@@ -71,7 +79,7 @@ button {
     position: fixed;
     right: 0;
     top: 0;
-    width: 250px;
+    width: 260px;
     height: 100%;
     background: black;
     border-left: 2px solid white;
@@ -92,10 +100,12 @@ button {
 
 <body>
 
+<!-- LOGO -->
 <img class="logo3d" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
 
 <h1 style="text-align:center;">HOLY & LUXURIOUS</h1>
 
+<!-- PRODUCTOS -->
 <div class="container">
 
 <a href="bape.html" style="text-decoration:none; color:white;">
@@ -118,13 +128,15 @@ button {
 
 </div>
 
+<!-- CARRITO -->
 <div id="cart">
-<h3>CARRITO</h3>
+<h3>CARRITO 🛒</h3>
 <ul id="cart-items"></ul>
 <p>TOTAL: $<span id="total">0</span></p>
-<button onclick="pagar()">PAGAR</button>
+<button onclick="pagar()">PAGAR 💳</button>
 </div>
 
+<!-- WHATSAPP -->
 <a class="whatsapp" href="https://wa.me/521XXXXXXXXXX" target="_blank">
 <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png">
 </a>
