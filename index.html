@@ -16,7 +16,7 @@ body {
 
 /* TEXTO BRILLO */
 h1, h2, p {
-    text-shadow: 0 0 5px white, 0 0 10px white, 0 0 20px #aaa;
+    text-shadow: 0 0 5px white, 0 0 10px white;
 }
 
 /* LOGO */
@@ -48,6 +48,7 @@ h1, h2, p {
     text-align: center;
     border-radius: 10px;
     border: 1px solid #222;
+    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -60,18 +61,19 @@ img {
     width: 200px;
 }
 
+/* VISTA PRODUCTO */
+.product-view {
+    display: none;
+    text-align: center;
+}
+
 /* BOTONES */
 button {
     background: white;
     color: black;
-    border: none;
     padding: 10px;
+    border: none;
     cursor: pointer;
-    font-weight: bold;
-}
-
-button:hover {
-    background: gray;
 }
 
 /* CARRITO */
@@ -79,7 +81,7 @@ button:hover {
     position: fixed;
     right: 0;
     top: 0;
-    width: 260px;
+    width: 250px;
     height: 100%;
     background: black;
     border-left: 2px solid white;
@@ -100,32 +102,45 @@ button:hover {
 
 <body>
 
-<!-- LOGO -->
 <img class="logo3d" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
 
 <h1 style="text-align:center;">HOLY & LUXURIOUS</h1>
 
-<!-- PRODUCTOS -->
-<div class="container">
+<!-- TIENDA -->
+<div id="shop" class="container">
 
-<a href="bape.html" style="text-decoration:none; color:white;">
-<div class="card">
+<div class="card" onclick="verProducto('bape')">
     <img src="bape.jpg">
     <h2>BAPE</h2>
     <p>$800</p>
-    <button onclick="event.preventDefault(); addToCart('BAPE',800)">AGREGAR</button>
 </div>
-</a>
 
-<a href="hellstar.html" style="text-decoration:none; color:white;">
-<div class="card">
+<div class="card" onclick="verProducto('hellstar')">
     <img src="hellstar.jpg">
     <h2>HELLSTAR</h2>
     <p>$500</p>
-    <button onclick="event.preventDefault(); addToCart('HELLSTAR',500)">AGREGAR</button>
 </div>
-</a>
 
+</div>
+
+<!-- PRODUCTO BAPE -->
+<div id="bape" class="product-view">
+    <h1>BAPE</h1>
+    <img src="bape.jpg">
+    <p>PRODUCTO PREMIUM 💎</p>
+    <button onclick="addToCart('BAPE',800)">AGREGAR</button>
+    <br><br>
+    <button onclick="volver()">VOLVER</button>
+</div>
+
+<!-- PRODUCTO HELLSTAR -->
+<div id="hellstar" class="product-view">
+    <h1>HELLSTAR</h1>
+    <img src="hellstar.jpg">
+    <p>STREETWEAR 🔥</p>
+    <button onclick="addToCart('HELLSTAR',500)">AGREGAR</button>
+    <br><br>
+    <button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- CARRITO -->
@@ -133,7 +148,7 @@ button:hover {
 <h3>CARRITO 🛒</h3>
 <ul id="cart-items"></ul>
 <p>TOTAL: $<span id="total">0</span></p>
-<button onclick="pagar()">PAGAR 💳</button>
+<button onclick="pagar()">PAGAR</button>
 </div>
 
 <!-- WHATSAPP -->
@@ -143,6 +158,19 @@ button:hover {
 
 <script>
 let total = 0;
+
+function verProducto(id) {
+    document.getElementById("shop").style.display = "none";
+    document.getElementById("bape").style.display = "none";
+    document.getElementById("hellstar").style.display = "none";
+    document.getElementById(id).style.display = "block";
+}
+
+function volver() {
+    document.getElementById("shop").style.display = "flex";
+    document.getElementById("bape").style.display = "none";
+    document.getElementById("hellstar").style.display = "none";
+}
 
 function addToCart(nombre, precio) {
     let lista = document.getElementById("cart-items");
