@@ -126,7 +126,7 @@ img {
 }
 
 button {
-    margin-top: 30px;
+    margin-top: 15px;
     padding: 10px 20px;
     background: white;
     color: black;
@@ -166,89 +166,128 @@ button:hover {
 
 <!-- MARCAS -->
 <div id="shop" class="container">
-
-<div class="card" onclick="verProducto('bape')">BAPE</div>
-<div class="card" onclick="verProducto('hellstar')">HELLSTAR</div>
-<div class="card" onclick="verProducto('essentials')">ESSENTIALS</div>
-<div class="card" onclick="verProducto('alo')">ALO</div>
-<div class="card" onclick="verProducto('sp5der')">SP5DER</div>
-
+    <div class="card" onclick="verProducto('bape')">BAPE</div>
+    <div class="card" onclick="verProducto('hellstar')">HELLSTAR</div>
+    <div class="card" onclick="verProducto('essentials')">ESSENTIALS</div>
+    <div class="card" onclick="verProducto('alo')">ALO</div>
+    <div class="card" onclick="verProducto('sp5der')">SP5DER</div>
 </div>
+
+<!-- PRODUCTOS -->
 
 <!-- BAPE -->
 <div id="bape" class="product-view">
     <h1>BAPE</h1>
-
     <div class="product">
         <img src="bape1.jpg">
         <p>Camiseta Camo</p>
-        <p>Tallas: S, M, L, XL</p>
+        <p>Tallas:</p>
+        <select id="talla-bape1">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <button onclick="comprar('BAPE Camiseta Camo', document.getElementById('talla-bape1').value)">Comprar</button>
     </div>
-
     <div class="product">
         <img src="bape2.jpg">
         <p>Sudadera Shark</p>
-        <p>Tallas: M, L, XL</p>
+        <p>Tallas:</p>
+        <select id="talla-bape2">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <button onclick="comprar('BAPE Sudadera Shark', document.getElementById('talla-bape2').value)">Comprar</button>
     </div>
-
     <button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- HELLSTAR -->
 <div id="hellstar" class="product-view">
     <h1>HELLSTAR</h1>
-
     <div class="product">
         <img src="hell1.jpg">
         <p>Playera Flames</p>
-        <p>Tallas: S, M, L</p>
+        <p>Tallas:</p>
+        <select id="talla-hell1">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+        </select>
+        <br>
+        <button onclick="comprar('HELLSTAR Playera Flames', document.getElementById('talla-hell1').value)">Comprar</button>
     </div>
-
     <div class="product">
         <img src="hell2.jpg">
         <p>Hoodie Black</p>
-        <p>Tallas: M, L, XL</p>
+        <p>Tallas:</p>
+        <select id="talla-hell2">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <button onclick="comprar('HELLSTAR Hoodie Black', document.getElementById('talla-hell2').value)">Comprar</button>
     </div>
-
     <button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- ESSENTIALS -->
 <div id="essentials" class="product-view">
     <h1>ESSENTIALS</h1>
-
     <div class="product">
         <img src="essentials1.jpg">
         <p>Sudadera Essentials</p>
-        <p>Tallas: S, M, L, XL</p>
+        <p>Tallas:</p>
+        <select id="talla-ess1">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <button onclick="comprar('ESSENTIALS Sudadera', document.getElementById('talla-ess1').value)">Comprar</button>
     </div>
-
     <button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- ALO -->
 <div id="alo" class="product-view">
     <h1>ALO</h1>
-
     <div class="product">
         <img src="alo1.jpg">
         <p>Set Deportivo</p>
-        <p>Tallas: S, M, L</p>
+        <p>Tallas:</p>
+        <select id="talla-alo1">
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+        </select>
+        <br>
+        <button onclick="comprar('ALO Set Deportivo', document.getElementById('talla-alo1').value)">Comprar</button>
     </div>
-
     <button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- SP5DER -->
 <div id="sp5der" class="product-view">
     <h1>SP5DER</h1>
-
     <div class="product">
         <img src="sp5der1.jpg">
         <p>Hoodie Sp5der</p>
-        <p>Tallas: M, L, XL</p>
+        <p>Tallas:</p>
+        <select id="talla-sp1">
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <br>
+        <button onclick="comprar('SP5DER Hoodie', document.getElementById('talla-sp1').value)">Comprar</button>
     </div>
-
     <button onclick="volver()">VOLVER</button>
 </div>
 
@@ -265,13 +304,8 @@ function verProducto(id) {
     document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
     document.getElementById(id).style.display = "block";
     
-    // Ocultar título principal
     document.querySelector(".titulo").style.display = "none";
-    
-    // Mantener fondo negro
     document.body.style.background = "black";
-    
-    // Mostrar pie de página
     document.getElementById("footer").style.display = "block";
 }
 
@@ -279,14 +313,16 @@ function volver() {
     document.getElementById("shop").style.display = "grid";
     document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
     
-    // Mostrar título principal
     document.querySelector(".titulo").style.display = "block";
-    
-    // Fondo negro
     document.body.style.background = "black";
-    
-    // Ocultar pie de página
     document.getElementById("footer").style.display = "none";
+}
+
+// FUNCIÓN DE COMPRA PAYPAL
+function comprar(producto, talla) {
+    let precio = 100; // Puedes cambiar por precio real
+    let url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=TU_CORREO_PAYPAL&item_name=${encodeURIComponent(producto)}%20Talla:${encodeURIComponent(talla)}&amount=${precio}&currency_code=USD`;
+    window.open(url, "_blank");
 }
 </script>
 
