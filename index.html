@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="google-site-verification" content="XIBlKLvuDEJILLmbbrN4oOnI5ISd2fUHf3uIYrAHWLU" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>HOLYANDLUXURIOUS</title>
-
+<script src="https://js.stripe.com/v3/"></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap');
 
@@ -107,31 +107,39 @@ body {
     animation: fadeIn 1s ease;
 }
 
+.product-container {
+    display: flex; /* Horizontal */
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
 .product {
-    margin: 30px 0;
+    margin: 0;
+    text-align: center;
 }
 
 .product img {
     width: 220px;
+    display: block;
+    margin: auto;
+    transition: transform 0.3s;
 }
+.product img:hover { transform: scale(1.05); }
 
 @keyframes fadeIn {
     from {opacity:0;}
     to {opacity:1;}
 }
 
-img {
-    width: 260px;
-    margin-top: 20px;
-}
-
 button {
-    margin-top: 15px;
+    margin-top: 10px;
     padding: 10px 20px;
     background: white;
     color: black;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
@@ -148,9 +156,27 @@ button:hover {
     color: white;
     margin-top: 50px;
 }
+
+/* Carrito */
+#carrito {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: white;
+    color: black;
+    padding: 15px;
+    border-radius: 10px;
+    width: 250px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+}
+#carrito h3 { margin-top:0; }
+.carrito-item { display:flex; justify-content:space-between; margin-bottom:5px; }
+.carrito-total { font-weight:bold; margin-top:10px; text-align:right; }
+select { padding:5px; margin-top:5px; }
 </style>
 </head>
-
 <body>
 
 <!-- INTRO -->
@@ -161,7 +187,6 @@ button:hover {
 <div class="main">
 
 <img class="bat" src="https://cdn-icons-png.flaticon.com/512/616/616494.png">
-
 <h1 class="titulo">HOLYANDLUXURIOUS</h1>
 
 <!-- MARCAS -->
@@ -173,156 +198,105 @@ button:hover {
     <div class="card" onclick="verProducto('sp5der')">SP5DER</div>
 </div>
 
-<!-- PRODUCTOS -->
+<!-- Carrito -->
+<div id="carrito">
+<h3>Carrito</h3>
+<div id="itemsCarrito"></div>
+<div class="carrito-total" id="totalCarrito">Total: $0</div>
+<button onclick="pagar()">Pagar</button>
+</div>
 
-<!-- BAPE -->
+<!-- Productos BAPE -->
 <div id="bape" class="product-view">
-    <h1>BAPE</h1>
-    <div class="product">
-        <img src="bape1.jpg">
-        <p>Camiseta Camo</p>
-        <p>Tallas:</p>
-        <select id="talla-bape1">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <br>
-        <button onclick="comprar('BAPE Camiseta Camo', document.getElementById('talla-bape1').value)">Comprar</button>
-    </div>
-    <div class="product">
-        <img src="bape2.jpg">
-        <p>Sudadera Shark</p>
-        <p>Tallas:</p>
-        <select id="talla-bape2">
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <br>
-        <button onclick="comprar('BAPE Sudadera Shark', document.getElementById('talla-bape2').value)">Comprar</button>
-    </div>
-    <button onclick="volver()">VOLVER</button>
+<h1>BAPE</h1>
+<div class="product-container">
+<div class="product">
+<img src="bape1.jpg">
+<p>Camiseta Camo</p>
+<select id="talla-bape1">
+<option value="S">S</option><option value="M">M</option><option value="L">L</option><option value="XL">XL</option>
+</select>
+<br>
+<button onclick="agregarCarrito('BAPE Camiseta Camo', 120, document.getElementById('talla-bape1').value)">Agregar al carrito</button>
+</div>
+<div class="product">
+<img src="bape2.jpg">
+<p>Sudadera Shark</p>
+<select id="talla-bape2">
+<option value="M">M</option><option value="L">L</option><option value="XL">XL</option>
+</select>
+<br>
+<button onclick="agregarCarrito('BAPE Sudadera Shark', 200, document.getElementById('talla-bape2').value)">Agregar al carrito</button>
+</div>
+</div>
+<button onclick="volver()">VOLVER</button>
 </div>
 
 <!-- HELLSTAR -->
 <div id="hellstar" class="product-view">
-    <h1>HELLSTAR</h1>
-    <div class="product">
-        <img src="hell1.jpg">
-        <p>Playera Flames</p>
-        <p>Tallas:</p>
-        <select id="talla-hell1">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-        </select>
-        <br>
-        <button onclick="comprar('HELLSTAR Playera Flames', document.getElementById('talla-hell1').value)">Comprar</button>
-    </div>
-    <div class="product">
-        <img src="hell2.jpg">
-        <p>Hoodie Black</p>
-        <p>Tallas:</p>
-        <select id="talla-hell2">
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <br>
-        <button onclick="comprar('HELLSTAR Hoodie Black', document.getElementById('talla-hell2').value)">Comprar</button>
-    </div>
-    <button onclick="volver()">VOLVER</button>
+<h1>HELLSTAR</h1>
+<div class="product-container">
+<div class="product">
+<img src="hell1.jpg"><p>Playera Flames</p>
+<select id="talla-hell1"><option value="S">S</option><option value="M">M</option><option value="L">L</option></select>
+<br><button onclick="agregarCarrito('HELLSTAR Playera Flames', 90, document.getElementById('talla-hell1').value)">Agregar al carrito</button>
+</div>
+<div class="product">
+<img src="hell2.jpg"><p>Hoodie Black</p>
+<select id="talla-hell2"><option value="M">M</option><option value="L">L</option><option value="XL">XL</option></select>
+<br><button onclick="agregarCarrito('HELLSTAR Hoodie Black', 180, document.getElementById('talla-hell2').value)">Agregar al carrito</button>
+</div>
+</div>
+<button onclick="volver()">VOLVER</button>
 </div>
 
-<!-- ESSENTIALS -->
-<div id="essentials" class="product-view">
-    <h1>ESSENTIALS</h1>
-    <div class="product">
-        <img src="essentials1.jpg">
-        <p>Sudadera Essentials</p>
-        <p>Tallas:</p>
-        <select id="talla-ess1">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <br>
-        <button onclick="comprar('ESSENTIALS Sudadera', document.getElementById('talla-ess1').value)">Comprar</button>
-    </div>
-    <button onclick="volver()">VOLVER</button>
-</div>
-
-<!-- ALO -->
-<div id="alo" class="product-view">
-    <h1>ALO</h1>
-    <div class="product">
-        <img src="alo1.jpg">
-        <p>Set Deportivo</p>
-        <p>Tallas:</p>
-        <select id="talla-alo1">
-            <option value="S">S</option>
-            <option value="M">M</option>
-            <option value="L">L</option>
-        </select>
-        <br>
-        <button onclick="comprar('ALO Set Deportivo', document.getElementById('talla-alo1').value)">Comprar</button>
-    </div>
-    <button onclick="volver()">VOLVER</button>
-</div>
-
-<!-- SP5DER -->
-<div id="sp5der" class="product-view">
-    <h1>SP5DER</h1>
-    <div class="product">
-        <img src="sp5der1.jpg">
-        <p>Hoodie Sp5der</p>
-        <p>Tallas:</p>
-        <select id="talla-sp1">
-            <option value="M">M</option>
-            <option value="L">L</option>
-            <option value="XL">XL</option>
-        </select>
-        <br>
-        <button onclick="comprar('SP5DER Hoodie', document.getElementById('talla-sp1').value)">Comprar</button>
-    </div>
-    <button onclick="volver()">VOLVER</button>
-</div>
-
-<!-- PIE DE PÁGINA -->
-<div id="footer" class="footer" style="display:none;">
-    © 2026 HOLYANDLUXURIOUS
-</div>
+<!-- Pie de página -->
+<div id="footer" class="footer" style="display:none;">© 2026 HOLYANDLUXURIOUS</div>
 
 </div>
 
 <script>
-function verProducto(id) {
-    document.getElementById("shop").style.display = "none";
-    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
-    document.getElementById(id).style.display = "block";
-    
-    document.querySelector(".titulo").style.display = "none";
-    document.body.style.background = "black";
-    document.getElementById("footer").style.display = "block";
+let carrito = [];
+function verProducto(id){
+    document.getElementById("shop").style.display="none";
+    document.querySelectorAll(".product-view").forEach(el=>el.style.display="none");
+    document.getElementById(id).style.display="block";
+    document.querySelector(".titulo").style.display="none";
+    document.body.style.background="black";
+    document.getElementById("footer").style.display="block";
 }
-
-function volver() {
-    document.getElementById("shop").style.display = "grid";
-    document.querySelectorAll(".product-view").forEach(el => el.style.display = "none");
-    
-    document.querySelector(".titulo").style.display = "block";
-    document.body.style.background = "black";
-    document.getElementById("footer").style.display = "none";
+function volver(){
+    document.getElementById("shop").style.display="grid";
+    document.querySelectorAll(".product-view").forEach(el=>el.style.display="none");
+    document.querySelector(".titulo").style.display="block";
+    document.body.style.background="black";
+    document.getElementById("footer").style.display="none";
 }
-
-// FUNCIÓN DE COMPRA PAYPAL
-function comprar(producto, talla) {
-    let precio = 100; // Puedes cambiar por precio real
-    let url = `https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=TU_CORREO_PAYPAL&item_name=${encodeURIComponent(producto)}%20Talla:${encodeURIComponent(talla)}&amount=${precio}&currency_code=USD`;
-    window.open(url, "_blank");
+function agregarCarrito(nombre, precio, talla){
+    carrito.push({nombre, precio, talla});
+    actualizarCarrito();
+}
+function actualizarCarrito(){
+    document.getElementById("carrito").style.display="block";
+    let items = document.getElementById("itemsCarrito");
+    items.innerHTML = "";
+    let total = 0;
+    carrito.forEach((p)=>{
+        total+=p.precio;
+        items.innerHTML += `<div class="carrito-item">${p.nombre} (${p.talla}) <span>$${p.precio}</span></div>`;
+    });
+    document.getElementById("totalCarrito").innerText="Total: $"+total;
+}
+async function pagar(){
+    // Conectar con tu backend serverless que crea Stripe Checkout Session
+    const response = await fetch('https://TU_BACKEND_SERVERLESS/checkouts', {
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body: JSON.stringify({items: carrito})
+    });
+    const session = await response.json();
+    const stripe = Stripe('TU_STRIPE_PUBLIC_KEY'); // reemplaza con tu clave pública
+    stripe.redirectToCheckout({sessionId: session.id});
 }
 </script>
 
